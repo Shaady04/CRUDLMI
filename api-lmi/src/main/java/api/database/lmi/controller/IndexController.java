@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController /*Arquitetura REST*/
 @RequestMapping(value = "/usuario")
 public class IndexController {
@@ -29,6 +30,7 @@ public class IndexController {
         return new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
     }
 
+    /*---------------------------------------------------------------------------------*/
     /*listar usuarios*/
     @GetMapping(value = "/", produces = "application/json")
     public ResponseEntity<List<Usuario>> usuario () {
@@ -37,7 +39,8 @@ public class IndexController {
 
         return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
     }
-	
+
+    /*---------------------------------------------------------------------------------*/
     /*inserir usuario*/
     @PostMapping(value = "/", produces = "application/json")
     public ResponseEntity<Usuario> cadastrar(@RequestBody Usuario usuario) {
@@ -47,6 +50,7 @@ public class IndexController {
         return new ResponseEntity<Usuario>(usuarioSalvo, HttpStatus.OK);
     }
 
+    /*---------------------------------------------------------------------------------*/
     /*atualizar usuario*/
     @PutMapping(value = "/", produces = "application/json")
     public ResponseEntity<Usuario> atualizar(@RequestBody Usuario usuario) {
@@ -56,6 +60,7 @@ public class IndexController {
         return new ResponseEntity<Usuario>(usuarioSalvo, HttpStatus.OK);
     }
 
+    /*---------------------------------------------------------------------------------*/
     /*delete usuario*/
     @DeleteMapping(value = "/{id}", produces = "application/text")
     public String delete(@PathVariable("id") Long id) {
