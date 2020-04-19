@@ -1,0 +1,15 @@
+  <div class="login">
+    <img src="../assets/lmi.png" class="usuario" width="120" height="120" alt="">
+    <h1>Login</h1>
+    <form>
+      <label for="login"><p>Usuário</p></label>
+      <input type="text" #text="ngModel" [(ngModel)] = "usuario.login" id="login" name="login" placeholder="Informe seu usuário" required>
+
+      <label for="senha"><p>Senha</p></label>
+      <input type="password" [(ngModel)] = "usuario.senha" id="senha" name="senha" placeholder="Informe a senha" required>
+
+      <input type="submit" name="" value="Login" (click)="login()">
+      <a href="#">Esqueceu sua senha?</a>
+    </form>
+  </div>
+

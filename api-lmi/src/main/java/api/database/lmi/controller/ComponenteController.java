@@ -3,6 +3,7 @@ package api.database.lmi.controller;
 import api.database.lmi.model.Componente;
 import api.database.lmi.repository.ComponenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,7 @@ public class ComponenteController {
     /*---------------------------------------------------------------------------------*/
     /*listar componente*/
     @GetMapping(value = "/", produces = "application/json")
+    @CachePut("cachecomponentes")
     public ResponseEntity<List<Componente>> componente () {
 
         List<Componente> list = (List<Componente>) componenteRepository.findAll();

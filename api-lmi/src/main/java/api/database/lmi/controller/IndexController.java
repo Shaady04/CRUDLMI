@@ -34,9 +34,19 @@ public class IndexController {
     /*---------------------------------------------------------------------------------*/
     /*listar usuarios*/
     @GetMapping(value = "/", produces = "application/json")
-    public ResponseEntity<List<Usuario>> usuario () {
+    public ResponseEntity<List<Usuario>> usuario () throws InterruptedException{
 
         List<Usuario> list = (List<Usuario>) usuarioRepository.findAll();
+
+        return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
+    }
+
+    /*---------------------------------------------------------------------------------*/
+    /*END-POINT consulta usuario por nome*/
+    @GetMapping(value = "/usuarioPorNome/{nome}", produces = "application/json")
+    public ResponseEntity<List<Usuario>> usuarioPorNome (@PathVariable("nome") String nome) throws InterruptedException{
+
+        List<Usuario> list = (List<Usuario>) usuarioRepository.findUserByNome(nome);
 
         return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
     }
