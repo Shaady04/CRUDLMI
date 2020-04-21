@@ -38,7 +38,7 @@ public class JWTTokenAutenticacaoService {
 
         /*Montagem do Token*/
         String JWT = Jwts.builder() /*Chama o gerador de Token*/
-                .setSubject(username) /*Adicona o usuario*/
+                .setSubject(username) /*Adiciona o usuario*/
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) /*Tempo de expiração*/
                 .signWith(SignatureAlgorithm.HS512, SECRET).compact(); /*Compactação e algoritmos de geração de senha*/
 
@@ -50,9 +50,7 @@ public class JWTTokenAutenticacaoService {
 
 
         /*Liberando resposta para porta diferente do projeto Angular*/
-
         liberacaoCors(response);
-
 
         /*Escreve token como responsta no corpo http*/
         response.getWriter().write("{\"Authorization\": \""+token+"\"}");
@@ -64,7 +62,6 @@ public class JWTTokenAutenticacaoService {
     public Authentication getAuthentication(HttpServletRequest request, HttpServletResponse response) {
 
         /*Pega o token enviado no cabeçalho http*/
-
         String token = request.getHeader(HEADER_STRING);
 
         if (token != null) {
@@ -84,7 +81,6 @@ public class JWTTokenAutenticacaoService {
                             usuario.getLogin(),
                             usuario.getSenha(),
                             usuario.getAuthorities());
-
                 }
             }
 
@@ -94,9 +90,7 @@ public class JWTTokenAutenticacaoService {
         liberacaoCors(response);
 
         return null; /*Não autorizado*/
-
     }
-
 
     private void liberacaoCors(HttpServletResponse response) {
         if (response.getHeader("Access-Control-Allow-Origin") == null) {

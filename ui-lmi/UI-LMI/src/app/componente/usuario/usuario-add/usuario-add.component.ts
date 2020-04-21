@@ -1,3 +1,5 @@
+import { UsuarioService } from './../../../service/usuario.service';
+import { User } from './../../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,14 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UsuarioAddComponent implements OnInit {
 
-  constructor(private routeActive: ActivatedRoute) { }
+  usuario = new User();
+
+  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) { }
 
   ngOnInit() {
     let id = this.routeActive.snapshot.paramMap.get('id');
 
     if (id != null) {
-      console.log('valor sendo editado:' + id);
+      this.userService.getUsuario(id).subscribe(data => {
+        this.usuario = data;
+      });
     }
+
+  }
+
+  salvarUser() {
+    console.info(this.usuario);
   }
 
 }

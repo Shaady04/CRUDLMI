@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController /*Arquitetura REST*/
 @RequestMapping(value = "/componente")
 public class ComponenteController {
@@ -34,7 +35,7 @@ public class ComponenteController {
     /*listar componente*/
     @GetMapping(value = "/", produces = "application/json")
     @CachePut("cachecomponentes")
-    public ResponseEntity<List<Componente>> componente () {
+    public ResponseEntity<List<Componente>> componente () throws InterruptedException{
 
         List<Componente> list = (List<Componente>) componenteRepository.findAll();
 
@@ -42,6 +43,17 @@ public class ComponenteController {
     }
 
     /*---------------------------------------------------------------------------------*/
+    /*END-POINT consulta componente por nome*/
+    @GetMapping(value = "/componentePorNome/{nome}", produces = "application/json")
+    public ResponseEntity<List<Componente>> componentePorNome (@PathVariable("nome") String nome) throws InterruptedException{
+
+        List<Componente> list = (List<Componente>) componenteRepository.findUserByNomeComponente(nome);
+
+        return new ResponseEntity<List<Componente>>(list, HttpStatus.OK);
+    }
+
+    /*---------------------------------------------------------------------------------*/
+
     /*inserir componente*/
     @PostMapping(value = "/", produces = "application/json")
     public ResponseEntity<Componente> cadastrar(@RequestBody Componente componente) {

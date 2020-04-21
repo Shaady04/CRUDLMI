@@ -1,0 +1,51 @@
+<h3 style="padding: 10px;">Cadastro do Componente</h3>
+
+<form style="padding: 10px">
+
+  <div class="form-row">
+    <div class="form-group col-md-1">
+      <label for="id">ID</label>
+      <input type="text" [(ngModel)]="componente.id" class="form-control" id="id" readonly="true" name="id" autocomplete="false">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="nomeComponente">Nome do Componente</label>
+      <input type="text" [(ngModel)]="componente.nomeComponente" class="form-control" id="nomeComponente" required="true" name="id" autocomplete="false">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="descricao">Descrição</label>
+      <input type="text" [(ngModel)]="componente.descricao" class="form-control" id="descricao" name="descricao" required="true" autocomplete="false">
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="quantidade">Quantidade</label>
+      <input type="text" [(ngModel)]="componente.quantidade" class="form-control" id="quantidade" name="quantidade" required="true" autocomplete="false">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="caixa">Caixa</label>
+      <input type="text" [(ngModel)]="componente.caixa" class="form-control" id="caixa" name="caixa" required="true" autocomplete="false">
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="gaveta">Gaveta</label>
+      <input type="text" [(ngModel)]="componente.gaveta" class="form-control" id="gaveta" name="gaveta" required="true" autocomplete="false">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <button type="button" class="btn btn-Light" [routerLink]="['/componenteList']" routerLinkActive="router-link-active">Voltar</button>
+      <button type="button" class="btn btn-primary mx-2">Salvar</button>
+    </div>
+  </div>
+
+</form>
+

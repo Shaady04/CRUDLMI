@@ -20,7 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private ImplementacaoUserDetailsService implementacaoUserDetailsSercice;
+    private ImplementacaoUserDetailsService implementacaoUserDetailsService;
 
 
     /*Configura as solicitações de acesso por Http*/
@@ -39,7 +39,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                 /*URL de Logout - Redireciona após o user deslogar do sistema*/
                 .anyRequest().authenticated().and().logout().logoutSuccessUrl("/index")
 
-                /*Maperia URL de Logout e insvalida o usuário*/
+                /*Maperia URL de Logout e invalida o usuário*/
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 
                 /*Filtra requisições de login para autenticação*/
@@ -51,13 +51,11 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
     }
 
-
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         /*Service que irá consultar o usuário no banco de dados*/
-        auth.userDetailsService(implementacaoUserDetailsSercice)
+        auth.userDetailsService(implementacaoUserDetailsService)
 
                 /*Padrão de codigição de senha*/
                 .passwordEncoder(new BCryptPasswordEncoder());

@@ -10,4 +10,8 @@ export class AppConstants {
     public static get baseUrl(): string {
         return this.baseServidor + "lmi/usuario/";
     }
+
+    public static get baseUrl2(): string {
+      return this.baseServidor + "lmi/componentes/";
+    }
 }
