@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ComponenteslmiComponent implements OnInit {
 
   componentes: Observable<Componentes[]>;
-  nome: String;
+  nomeC: String;
 
   constructor(private componentesService: ComponentesService) { }
 
@@ -31,7 +31,7 @@ export class ComponenteslmiComponent implements OnInit {
   }
 
   consultarComponente() {
-    this.componentesService.consultarComponente(this.nome).subscribe(data => {
+    this.componentesService.consultarComponente(this.nomeC).subscribe(data => {
       this.componentes = data;
     });
   }

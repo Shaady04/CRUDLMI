@@ -24,6 +24,6 @@ export class ComponentesService {
   }
 
   consultarComponente(nome: String): Observable<any> {
-    return this.http.get(AppConstants.baseUrl2 + "componentePorNome/" + nome);
+    return this.http.get(AppConstants.baseUrl2 + "componentesPorNome/" + nome);
   }
 }

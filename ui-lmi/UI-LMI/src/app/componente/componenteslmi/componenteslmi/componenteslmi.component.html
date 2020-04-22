@@ -19,8 +19,8 @@
   <table class="table">
     <thead class="thead-light">
       <th scope="col">#</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Detalhe</th>
+      <th style="width:250px" scope="col">Nome</th>
+      <th style="width:250px" scope="col">Detalhe</th>
       <th scope="col">Caixa</th>
       <th scope="col">Quantidade</th>
       <th scope="col">Gaveta</th>
@@ -35,8 +35,8 @@
       <td>{{comp.quantidade}}</td>
       <td>{{comp.gaveta}}</td>
       <td>
-        <button type="button" [routerLink]="['/componenteAdd', componenteslmi.id]" routerLinkActive="router-link-active" class="btn btn-warning btn-sm">Editar</button>
-        <button type="button" (click)="deleteComponente(componenteslmi.id)" class="btn btn-danger btn-sm mx-2">Excluir</button>
+        <button type="button" [routerLink]="['/componenteAdd', componentes.id]" routerLinkActive="router-link-active" class="btn btn-warning btn-sm">Editar</button>
+        <button type="button" (click)="deleteComponente(componentes.id)" class="btn btn-danger btn-sm mx-2">Excluir</button>
       </td>
     </tbody>
   </table>

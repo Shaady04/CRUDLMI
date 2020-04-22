@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController /*Arquitetura REST*/
-@RequestMapping(value = "/componente")
+@RequestMapping(value = "/componentes")
 public class ComponenteController {
 
 
@@ -44,8 +44,8 @@ public class ComponenteController {
 
     /*---------------------------------------------------------------------------------*/
     /*END-POINT consulta componente por nome*/
-    @GetMapping(value = "/componentePorNome/{nome}", produces = "application/json")
-    public ResponseEntity<List<Componente>> componentePorNome (@PathVariable("nome") String nome) throws InterruptedException{
+    @GetMapping(value = "/componentesPorNome/{nome}", produces = "application/json")
+    public ResponseEntity<List<Componente>> componentesPorNome (@PathVariable("nome") String nome) throws InterruptedException{
 
         List<Componente> list = (List<Componente>) componenteRepository.findUserByNomeComponente(nome);
 
