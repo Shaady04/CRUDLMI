@@ -11,7 +11,7 @@
     <div class="col-md-5">
       <div class="input-group h2">
         <input type="text" class="form-control" id="nomeC" name="nomeC" [(ngModel)]="nomeC" placeholder="Pesquisar componente">
-        <button type="button" (click)="consultarComponente()" class="btn btn-Secondary">Buscar</button>
+        <button type="button"(click)="consultarComponente()" class="btn btn-Secondary">Buscar</button>
       </div>
     </div>
   <br/>
@@ -27,18 +27,21 @@
       <th scope="col">Ações</th>
     </thead>
     <tbody>
-      <tr *ngFor="let comp of componentes">
-      <td>{{comp.id}}</td>
-      <td>{{comp.nome}}</td>
-      <td>{{comp.tipo}}</td>
-      <td>{{comp.caixa}}</td>
-      <td>{{comp.quantidade}}</td>
-      <td>{{comp.gaveta}}</td>
+      <tr *ngFor="let componente of componentes | paginate: { itemsPerPage:10, currentPage: p, totalItems : total }; let i = index">
+      <td>{{componente.id}}</td>
+      <td>{{componente.nome}}</td>
+      <td>{{componente.tipo}}</td>
+      <td>{{componente.caixa}}</td>
+      <td>{{componente.quantidade}}</td>
+      <td>{{componente.gaveta}}</td>
       <td>
-        <button type="button" [routerLink]="['/componenteAdd', componentes.id]" routerLinkActive="router-link-active" class="btn btn-warning btn-sm">Editar</button>
-        <button type="button" (click)="deleteComponente(componentes.id)" class="btn btn-danger btn-sm mx-2">Excluir</button>
+        <button type="button" [routerLink]="['/componenteAdd', componente.id]" routerLinkActive="router-link-active" class="btn btn-warning btn-sm">Editar</button>
+        <button type="button" (click)="deleteComponente(componente.id, i)" class="btn btn-danger btn-sm mx-2">Excluir</button>
       </td>
     </tbody>
   </table>
 
+  <div class="text-center">
+    <pagination-controls (pageChange)="carregarPagina( p = $event)" previousLabel="Voltar" nextLabel="Avançar" responsive="true"></pagination-controls>
+  </div>
 </div>

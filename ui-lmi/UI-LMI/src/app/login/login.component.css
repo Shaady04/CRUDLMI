@@ -83,3 +83,7 @@ h1 {
     color: white;
 }
 
+#planodefundo{
+  background-image: url(../../assets/planodefundo.png);
+  }
+

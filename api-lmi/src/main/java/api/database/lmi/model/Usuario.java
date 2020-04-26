@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Usuario implements UserDetails {
 	inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", table = "role", unique = false, updatable = false,
 				foreignKey = @ForeignKey(name = "role_fk", value = ConstraintMode.CONSTRAINT))
 				)
-	private List<Role> roles;
+	private List<Role> roles = new ArrayList<Role>();
 
 	public Long getId() {
 		return id;

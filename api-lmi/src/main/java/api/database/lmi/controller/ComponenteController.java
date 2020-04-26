@@ -4,6 +4,9 @@ import api.database.lmi.model.Componente;
 import api.database.lmi.repository.ComponenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,25 +38,70 @@ public class ComponenteController {
     /*listar componente*/
     @GetMapping(value = "/", produces = "application/json")
     @CachePut("cachecomponentes")
-    public ResponseEntity<List<Componente>> componente () throws InterruptedException{
+    public ResponseEntity<Page<Componente>> componente () throws InterruptedException{
 
-        List<Componente> list = (List<Componente>) componenteRepository.findAll();
+        PageRequest page = PageRequest.of(0,10, Sort.by("nome"));
 
-        return new ResponseEntity<List<Componente>>(list, HttpStatus.OK);
+        Page<Componente> list = componenteRepository.findAll(page);
+
+        //List<Componente> list = (List<Componente>) componenteRepository.findAll();
+
+        return new ResponseEntity<Page<Componente>>(list, HttpStatus.OK);
+    }
+
+    /*---------------------------------------------------------------------------------*/
+    /*listar componente por paginacao*/
+    @GetMapping(value = "/page/{pagina}", produces = "application/json")
+    @CachePut("cachecomponentes")
+    public ResponseEntity<Page<Componente>> componentePagina (@PathVariable("pagina") int pagina) throws InterruptedException{
+
+        PageRequest page = PageRequest.of(pagina,10, Sort.by("nome"));
+
+        Page<Componente> list = componenteRepository.findAll(page);
+
+        //List<Componente> list = (List<Componente>) componenteRepository.findAll();
+
+        return new ResponseEntity<Page<Componente>>(list, HttpStatus.OK);
     }
 
     /*---------------------------------------------------------------------------------*/
     /*END-POINT consulta componente por nome*/
     @GetMapping(value = "/componentesPorNome/{nome}", produces = "application/json")
-    public ResponseEntity<List<Componente>> componentesPorNome (@PathVariable("nome") String nome) throws InterruptedException{
+    public ResponseEntity<Page<Componente>> componentesPorNome (@PathVariable("nome") String nome) throws InterruptedException{
 
-        List<Componente> list = (List<Componente>) componenteRepository.findUserByNomeComponente(nome);
+        PageRequest pageRequest = null;
+        Page<Componente> list = null;
 
-        return new ResponseEntity<List<Componente>>(list, HttpStatus.OK);
+        if(nome == null || (nome != null && nome.trim().isEmpty()) || nome.equalsIgnoreCase("undefined")) {
+            pageRequest = PageRequest.of(0, 10, Sort.by("nome"));
+            list = componenteRepository.findAll(pageRequest);
+        } else {
+            pageRequest = PageRequest.of(0, 10, Sort.by("nome"));
+            list = componenteRepository.findComponenteByNomePage(nome, pageRequest);
+        }
+
+        return new ResponseEntity<Page<Componente>>(list, HttpStatus.OK);
     }
 
     /*---------------------------------------------------------------------------------*/
+    /*END-POINT consulta componente por nome*/
+    @GetMapping(value = "/componentesPorNome/{nome}/page/{page}", produces = "application/json")
+    public ResponseEntity<Page<Componente>> componentesPorNomePage (@PathVariable("nome") String nome, @PathVariable("page") int page) throws InterruptedException{
 
+        PageRequest pageRequest = null;
+        Page<Componente> list = null;
+
+        if(nome == null || (nome != null && nome.trim().isEmpty()) || nome.equalsIgnoreCase("undefined")) {
+            pageRequest = PageRequest.of(page, 10, Sort.by("nome"));
+            list = componenteRepository.findAll(pageRequest);
+        } else {
+            pageRequest = PageRequest.of(page, 10, Sort.by("nome"));
+            list = componenteRepository.findComponenteByNomePage(nome, pageRequest);
+        }
+
+        return new ResponseEntity<Page<Componente>>(list, HttpStatus.OK);
+    }
+    /*---------------------------------------------------------------------------------*/
     /*inserir componente*/
     @PostMapping(value = "/", produces = "application/json")
     public ResponseEntity<Componente> cadastrar(@RequestBody Componente componente) {

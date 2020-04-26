@@ -25,7 +25,7 @@ export class LoginServiceService {
       },
         error => {
         console.error("Erro ao fazer login, verifique seus dados");
-        alert('Acesso Negado!')
+        alert('Acesso Negado!');
         }
       );
     }

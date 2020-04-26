@@ -1,6 +1,6 @@
 <h3 style="padding: 10px;">Cadastro do Usuário</h3>
 
-<form style="padding: 10px">
+<form style="padding: 10px" #formValidate ="ngForm">
 
   <div class="form-row">
     <div class="form-group col-md-1">
@@ -12,28 +12,32 @@
   <div class="form-row">
     <div class="form-group col-md-5">
       <label for="nome">Nome</label>
-      <input type="text" [(ngModel)]="usuario.nome" class="form-control" id="nome" required="true" name="id" autocomplete="false">
+      <span style="color: red; font-size: 23px;" *ngIf="nomeValidate.invalid"> *</span>
+      <input type="text" [(ngModel)]="usuario.nome" #nomeValidate="ngModel" class="form-control" id="nome" required="true" name="nome" autocomplete="false">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-5">
       <label for="login">Login</label>
-      <input type="text" [(ngModel)]="usuario.login" class="form-control" id="login" name="login" required="true" autocomplete="false">
+      <span style="color: red; font-size: 23px;" *ngIf="loginValidate.invalid"> *</span>
+      <input type="text" [(ngModel)]="usuario.login" #loginValidate="ngModel" class="form-control" id="login" name="login" required="true" autocomplete="false">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-5">
       <label for="senha">Senha</label>
-      <input type="password" [(ngModel)]="usuario.senha" class="form-control" id="senha" name="senha" required="true" autocomplete="false">
+      <span style="color: red; font-size: 23px;" *ngIf="senhaValidate.invalid"> *</span>
+      <input type="password" [(ngModel)]="usuario.senha" #senhaValidate="ngModel"  class="form-control" id="senha" name="senha" required="true" autocomplete="false">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
       <button type="button" class="btn btn-Light" [routerLink]="['/usuarioList']" routerLinkActive="router-link-active">Voltar</button>
-      <button type="button" class="btn btn-primary mx-2" (click)="salvarUser()">Salvar</button>
+      <button type="button" class="btn btn-light mx-2" (click)="novo()">Limpar</button>
+      <button type="button" class="btn btn-primary mx-2"  [disabled]="formValidate.invalid" (click)="salvarUser()">Salvar</button>
     </div>
   </div>
 

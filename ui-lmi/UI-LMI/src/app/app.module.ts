@@ -1,3 +1,4 @@
+import { GuardiaoGuard } from './service/guardiao.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -12,17 +13,19 @@ import { UsuarioComponent } from './componente/usuario/usuario/usuario.component
 import { UsuarioAddComponent } from './componente/usuario/usuario-add/usuario-add.component';
 import { ComponenteslmiComponent } from './componente/componenteslmi/componenteslmi/componenteslmi.component';
 import { ComponenteslmiAddComponent } from './componente/componenteslmi/componenteslmi-add/componenteslmi-add.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 export const appRouters: Routes = [
-
-  { path: 'home', component: HomeComponent },
+  /*canActivate: [GuardiaoGuard]*/
+  { path: 'home', component: HomeComponent  },
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
   { path: 'usuarioList', component: UsuarioComponent },
-  { path: 'usuarioAdd', component: UsuarioAddComponent},
-  { path: 'usuarioAdd/:id', component: UsuarioAddComponent},
+  { path: 'usuarioAdd', component: UsuarioAddComponent },
+  { path: 'usuarioAdd/:id', component: UsuarioAddComponent },
   { path: 'componenteList', component: ComponenteslmiComponent },
-  { path: 'componenteAdd', component: ComponenteslmiAddComponent}
+  { path: 'componenteAdd', component: ComponenteslmiAddComponent },
+  { path: 'componenteAdd/:id', component: ComponenteslmiAddComponent}
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
@@ -42,7 +45,8 @@ export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
     FormsModule,
     HttpClientModule,
     routes,
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

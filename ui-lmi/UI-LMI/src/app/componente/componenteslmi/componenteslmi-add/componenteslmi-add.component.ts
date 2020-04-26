@@ -25,8 +25,24 @@ export class ComponenteslmiAddComponent implements OnInit {
   }
 
   salvarComponente() {
-    console.info(this.componente);
+    if (this.componente.id != null && this.componente.id.toString().trim() != null) { /*Att ou edit */
+      this.componentesService.updateComponente(this.componente).subscribe(data => {
+        this.novo();
+        console.info("Componente Atualizado:" + data);
+        console.log("Base Atualizada" + data);
+      });
+    } else {
+      this.componentesService.salvarComponente(this.componente).subscribe(data => {
+        /*Salvando um novo componente */
+        this.novo();
+        console.info("Base Atualizada:" + data);
+        console.log("Base Atualizada [cadastro]" + data);
+      });
+    }
   }
 
+  novo() {
+    this.componente = new Componentes();
+  }
 }
 

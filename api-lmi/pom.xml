@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<scope>9.2-1003-jdbc4</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

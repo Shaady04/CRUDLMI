@@ -20,10 +20,36 @@ export class UsuarioService {
   }
 
   deletarUsuario(id: Number): Observable<any> {
-    return this.http.delete(AppConstants.baseUrl + id, { responseType: 'text' });
+    var x = confirm("Tem certeza?");
+    if (x == true) {
+      return this.http.delete(AppConstants.baseUrl + id, { responseType: 'text' });
+    }
   }
 
   consultarUser(nome: String): Observable<any> {
     return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome);
   }
+
+  salvarUsuario(user): Observable<any> {
+    alert("Usuário Cadastrado!");
+    return this.http.post<any>(AppConstants.baseUrl, user);
+  }
+
+  updateUsuario(user): Observable<any> {
+    alert("Usuário Atualizado!");
+    return this.http.put<any>(AppConstants.baseUrl, user);
+  }
+
+  userAutenticado() {
+
+    if (localStorage.getItem('token') !== null &&
+      localStorage.getItem('token').toString().trim()! == null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+
 }
