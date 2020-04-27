@@ -49,4 +49,16 @@ export class ComponentesService {
     return this.http.put(AppConstants.baseUrl2, componentes);
   }
 
+  downloadRelatorioAllList() {
+    return this.http.get(AppConstants.baseUrl2 + 'relatoriolist', { responseType: 'text' }).subscribe(data => {
+      document.querySelector('iframe').src = data;
+    });
+  }
+
+  downloadRelatorioPedidos() {
+    return this.http.get(AppConstants.baseUrl2 + 'relatoriopedidos', { responseType: 'text' }).subscribe(data => {
+      document.querySelector('iframe').src = data;
+    });
+  }
+
 }

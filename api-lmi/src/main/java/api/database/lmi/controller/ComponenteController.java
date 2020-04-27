@@ -2,6 +2,8 @@ package api.database.lmi.controller;
 
 import api.database.lmi.model.Componente;
 import api.database.lmi.repository.ComponenteRepository;
+import api.database.lmi.service.ServiceRelatorio;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +25,9 @@ public class ComponenteController {
 
     @Autowired /* de fosse CDI seria @Inject*/
     private ComponenteRepository componenteRepository;
+
+    @Autowired
+    private ServiceRelatorio serviceRelatorio;
 
     /* Serviço RESTful */
 
@@ -130,4 +136,27 @@ public class ComponenteController {
 
         return "Componente excluido com sucesso";
     }
+
+    /*---------------------------------------------------------------------------------*/
+    @GetMapping(value="/relatoriolist", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorioAllList(HttpServletRequest request) throws Exception{
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-componentestotal",
+                request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
+    }
+
+    /*---------------------------------------------------------------------------------*/
+    @GetMapping(value="/relatoriopedidos", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorioPedidos(HttpServletRequest request) throws Exception{
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-componentespedidos",
+                request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
+    }
+
 }

@@ -58,4 +58,13 @@ export class ComponenteslmiComponent implements OnInit {
       });
     }
   }
+
+  imprimiRelatorioList() {
+    return this.componentesService.downloadRelatorioAllList();
+  }
+
+  imprimiRelatorioPedidos() {
+    return this.componentesService.downloadRelatorioPedidos();
+  }
+
 }
