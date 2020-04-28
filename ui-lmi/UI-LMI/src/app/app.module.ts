@@ -14,6 +14,7 @@ import { UsuarioAddComponent } from './componente/usuario/usuario-add/usuario-ad
 import { ComponenteslmiComponent } from './componente/componenteslmi/componenteslmi/componenteslmi.component';
 import { ComponenteslmiAddComponent } from './componente/componenteslmi/componenteslmi-add/componenteslmi-add.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const appRouters: Routes = [
   /*canActivate: [GuardiaoGuard]*/

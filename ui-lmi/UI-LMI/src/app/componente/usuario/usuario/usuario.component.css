@@ -1,4 +1,11 @@
 .cordefundo {
-  background-color: rgb(246, 246, 246);
+    background-color: rgb(246, 246, 246);
 }
 
+.table tr:nth-child(even) {
+    background-color: #F5F5F5;
+}
+
+.table tr:hover {
+    background-color: #E6E6FA;
+}

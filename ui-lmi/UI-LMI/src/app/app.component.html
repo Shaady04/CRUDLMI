@@ -5,20 +5,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" ><strong>Home</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="sair()">Sair</a>
+          <a class="nav-link" (click)="sair()"><strong>Sair</strong></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Menu
+         <strong>Menu</strong>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="['/usuarioList']" routerLinkActive="router-link-active" >Usuários</a>
+            <a class="dropdown-item" [routerLink]="['/usuarioList']" routerLinkActive="router-link-active">Usuários</a>
+          <div class="dropdown-divider"></div>
             <a class="dropdown-item" [routerLink]="['/componenteList']" routerLinkActive="router-link-active" >Componentes</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Link 3</a>
+          <div class="dropdown-divider"></div>
+            <a class="dropdown-item" >Lista de Pedidos</a>
           </div>
         </li>
       </ul>

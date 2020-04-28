@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   title = 'UI-LMI';
+  /*faCoffee = faCoffee;*/
 
   constructor(private router: Router) {
   }

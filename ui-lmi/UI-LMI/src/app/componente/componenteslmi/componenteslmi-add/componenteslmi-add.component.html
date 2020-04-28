@@ -5,7 +5,7 @@
   <div class="form-row">
     <div class="form-group col-md-1">
       <label for="id">ID</label>
-      <input type="text" [(ngModel)]="componente.id" class="form-control" id="id" readonly="true" name="id" autocomplete="false">
+      <input type="text" [(ngModel)]="componente.id" class="form-control" id="id" name="id" readonly="true" autocomplete="false">
     </div>
   </div>
 
@@ -13,7 +13,7 @@
     <div class="form-group col-md-6">
       <label for="nomeComponente">Nome do Componente</label>
       <span style="color: red; font-size: 23px;" *ngIf="nomeComponenteValidate.invalid"> *</span>
-      <input type="text" [(ngModel)]="componente.nome" #nomeComponenteValidate="ngModel" class="form-control" id="nomeComponente" required="true" name="id" autocomplete="false">
+      <input type="text" [(ngModel)]="componente.nome" #nomeComponenteValidate="ngModel" class="form-control" id="nomeComponente" required="true" name="nome" autocomplete="false">
     </div>
   </div>
 
